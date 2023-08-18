@@ -43,7 +43,7 @@ st.markdown(
 st.pyplot(fig)
 
 # Button styling
-if st.button("Download Data as CSV", key="download_button"):
+if st.button("Download Data as CSV"):
     df = pd.DataFrame(data, columns=["Value"])
     csv = df.to_csv(index=False)
     st.download_button(
@@ -51,7 +51,6 @@ if st.button("Download Data as CSV", key="download_button"):
         data=csv,
         file_name="generated_data.csv",
         unsafe_allow_html=True,
-        key="download_link",  # Use a different key for the link
     )
 
 # App footer
