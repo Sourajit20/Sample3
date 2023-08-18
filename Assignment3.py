@@ -17,11 +17,11 @@ st.sidebar.markdown(
     "<h2 style='color: #EEA637; font-weight: bold;'>Parameter Settings</h2>",
     unsafe_allow_html=True,
 )
-st.sidebar.markdown("Adjust the parameters to see changes in the histogram:")
+st.sidebar.markdown("Fine-tune the parameters to visualize the distribution:")
 
 # Get user input
-mean = st.sidebar.number_input("Mean", value=0.0)
-std_dev = st.sidebar.number_input("Standard Deviation", value=1.0)
+mean = st.sidebar.number_input("Mean", value=0.0, step=0.1)
+std_dev = st.sidebar.number_input("Standard Deviation", value=1.0, step=0.1)
 num_samples = st.sidebar.number_input("Number of Samples", value=1000)
 
 # Generate random data
@@ -29,7 +29,7 @@ np.random.seed(0)  # For reproducibility
 data = np.random.normal(mean, std_dev, num_samples)
 
 # Plot styling
-fig, ax = plt.subplots(figsize=(8, 6))
+fig, ax = plt.subplots(figsize=(10, 6))
 ax.hist(data, bins=30, edgecolor="k", color="#EEA637", alpha=0.7)
 ax.set_xlabel("Value", fontsize=14, fontweight="bold")
 ax.set_ylabel("Frequency", fontsize=14, fontweight="bold")
@@ -43,7 +43,7 @@ st.markdown(
 st.pyplot(fig)
 
 # Button styling
-if st.button("Download Data as CSV"):
+if st.button("Download Data as CSV", key="download_button"):
     df = pd.DataFrame(data, columns=["Value"])
     csv = df.to_csv(index=False)
     st.download_button(
@@ -51,8 +51,9 @@ if st.button("Download Data as CSV"):
         data=csv,
         file_name="generated_data.csv",
         unsafe_allow_html=True,
+        key="download_link",
     )
 
 # App footer
 st.markdown("---")
-st.markdown("Created with :heart: by Sourajit Ghosh")
+st.markdown("Created with :sparkles: by Sourajit Ghosh")
