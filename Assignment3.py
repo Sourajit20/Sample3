@@ -20,11 +20,19 @@ def plot_histogram(samples):
   # This line has been removed since plotly.express.bar() uses plotly.tools
   # st.plotly_express.bar(x=samples)
 
-  fig = plt.figure()
-  plt.hist(samples)
-  plt.xlabel("Value")
-  plt.ylabel("Number of samples")
-  plt.title("Histogram of normal distribution")
+  # This line has been removed since plotly.figure() uses plotly.tools
+  # fig = plt.figure()
+  # plt.hist(samples)
+  # plt.xlabel("Value")
+  # plt.ylabel("Number of samples")
+  # plt.title("Histogram of normal distribution")
+  # st.plotly_chart(fig)
+
+  fig = go.Figure()
+  fig.hist(samples)
+  fig.xlabel("Value")
+  fig.ylabel("Number of samples")
+  fig.title("Histogram of normal distribution")
   st.plotly_chart(fig)
 
 def download_data(samples):
@@ -46,12 +54,19 @@ samples = generate_normal_distribution(mean, standard_deviation, number_of_sampl
 # This line has been removed since plotly.express.bar() uses plotly.tools
 # st.plotly_express.bar(x=samples)
 
-# This line has been modified to use plotly.figure()
-fig = plt.figure()
-plt.hist(samples)
-plt.xlabel("Value")
-plt.ylabel("Number of samples")
-plt.title("Histogram of normal distribution")
+# This line has been removed since plotly.figure() uses plotly.tools
+# fig = plt.figure()
+# plt.hist(samples)
+# plt.xlabel("Value")
+# plt.ylabel("Number of samples")
+# plt.title("Histogram of normal distribution")
+# st.plotly_chart(fig)
+
+fig = go.Figure()
+fig.hist(samples)
+fig.xlabel("Value")
+fig.ylabel("Number of samples")
+fig.title("Histogram of normal distribution")
 st.plotly_chart(fig)
 
 download_button = st.button("Download data")
