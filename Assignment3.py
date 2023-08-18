@@ -3,9 +3,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Link custom CSS
-st.markdown('<link rel="stylesheet" href="styles.css">', unsafe_allow_html=True)
-
 # Page layout
 st.set_page_config(page_title="Normal Distribution App", layout="wide")
 
