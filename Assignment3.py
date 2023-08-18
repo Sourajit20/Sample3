@@ -51,7 +51,7 @@ if st.button("Download Data as CSV", key="download_button"):
         data=csv,
         file_name="generated_data.csv",
         unsafe_allow_html=True,
-        key="download_link",
+        key="download_link",  # Use a different key for the link
     )
 
 # App footer
