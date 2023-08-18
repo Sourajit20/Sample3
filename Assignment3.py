@@ -42,16 +42,11 @@ st.markdown(
 )
 st.pyplot(fig)
 
-# Button styling
+# Download as CSV
 if st.button("Download Data as CSV"):
     df = pd.DataFrame(data, columns=["Value"])
     csv = df.to_csv(index=False)
-    st.download_button(
-        "<span style='color:#fff; font-weight: bold;'>Download CSV</span>",
-        data=csv,
-        file_name="generated_data.csv",
-        unsafe_allow_html=True,
-    )
+    st.download_button("Download CSV", data=csv, file_name="generated_data.csv")
 
 # App footer
 st.markdown("---")
