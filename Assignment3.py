@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 st.set_page_config(
     page_title="Normal Distribution App",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
     page_icon=":chart_with_upwards_trend:",
 )
 
