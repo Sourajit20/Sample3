@@ -1,54 +1,40 @@
 import streamlit as st
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
+import csv
 
-# Set custom page configuration
-st.set_page_config(
-    page_title="Normal Distribution App",
-    layout="wide",
-    initial_sidebar_state="expanded",
-    page_icon=":chart_with_upwards_trend:",
-)
+def generate_normal_distribution(mean, standard_deviation, number_of_samples):
+  """Generates a normal distribution with the specified mean, standard deviation, and number of samples."""
+  samples = np.random.normal(mean, standard_deviation, number_of_samples)
+  return samples
 
-# Sidebar styling
-st.sidebar.header("Parameters")
-st.sidebar.markdown("## <span style='color: #EEA637;'>Parameter Settings</span>", unsafe_allow_html=True)
+def plot_histogram(samples):
+  """Plots the histogram of the specified samples."""
+  plt.hist(samples)
+  plt.xlabel("Value")
+  plt.ylabel("Number of samples")
+  plt.title("Histogram of normal distribution")
+  plt.show()
 
-# Get user input
-mean = st.sidebar.number_input("Mean", value=0.0)
-std_dev = st.sidebar.number_input("Standard Deviation", value=1.0)
-num_samples = st.sidebar.number_input("Number of Samples", value=1000)
+def download_data(samples):
+  """Downloads the specified samples into a .csv file."""
+  with open("data.csv", "w") as f:
+    writer = csv.writer(f)
+    writer.writerow(["Value"])
+    for sample in samples:
+      writer.writerow([sample])
 
-# Generate random data
-np.random.seed(0)  # For reproducibility
-data = np.random.normal(mean, std_dev, num_samples)
+st.title("Normal distribution generator")
 
-# Plot styling
-fig, ax = plt.subplots(figsize=(8, 6))
-ax.hist(data, bins=30, edgecolor="k", color="#EEA637")
-ax.set_xlabel("Value", fontsize=14)
-ax.set_ylabel("Frequency", fontsize=14)
-ax.set_title("Histogram of Generated Normal Distribution", fontsize=16)
+mean = st.slider("Mean", 0, 10, 5)
+standard_deviation = st.slider("Standard deviation", 0, 5, 1)
+number_of_samples = st.slider("Number of samples", 10, 1000, 100)
 
-# Display the plot using st.pyplot()
-st.markdown(
-    "<h1 style='text-align:center; color:#EEA637;'>Histogram of Generated Data</h1>",
-    unsafe_allow_html=True,
-)
-st.pyplot(fig)
+samples = generate_normal_distribution(mean, standard_deviation, number_of_samples)
 
-# Button styling
-if st.button("Download Data as CSV"):
-    df = pd.DataFrame(data, columns=["Value"])
-    csv = df.to_csv(index=False)
-    st.download_button(
-        "Download CSV",
-        data=csv,
-        file_name="generated_data.csv",
-    )
+st.plotly_chart(plot_histogram(samples))
 
-# App footer
-st.markdown("---")
-st.markdown("Created by Sourajit Ghosh :smile:")
+download_button = st.button("Download data")
 
+if download_button:
+  download_data(samples)
