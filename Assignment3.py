@@ -11,9 +11,9 @@ st.set_page_config(
     page_icon=":chart_with_upwards_trend:",
 )
 
-# Sidebar styling
+# Sidebar styling with colors
 st.sidebar.header("Parameters")
-st.sidebar.markdown("### Parameter Settings")
+st.sidebar.markdown("<h3 style='color: #EEA637;'>Parameter Settings</h3>", unsafe_allow_html=True)
 st.sidebar.markdown("Adjust the parameters to see changes in the histogram:")
 
 # Get user input
