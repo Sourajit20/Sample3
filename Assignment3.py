@@ -18,7 +18,7 @@ data = np.random.normal(mean, std_dev, num_samples)
 
 # Create a figure and axis for the histogram
 fig, ax = plt.subplots()
-ax.hist(data, bins=30, edgecolor="k", color="dark green")
+ax.hist(data, bins=30, edgecolor="k", color="green")
 ax.set_xlabel("Value")
 ax.set_ylabel("Frequency")
 ax.set_title("Histogram of Generated Normal Distribution")
