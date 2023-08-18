@@ -17,7 +17,7 @@ st.sidebar.markdown(
     "<h2 style='color: #EEA637; font-weight: bold;'>Parameter Settings</h2>",
     unsafe_allow_html=True,
 )
-st.sidebar.markdown("Fine-tune the parameters to visualize the distribution:")
+st.sidebar.markdown("Adjust the parameters to see changes in the histogram:")
 
 # Get user input
 mean = st.sidebar.number_input("Mean", value=0.0)
@@ -52,7 +52,7 @@ if st.button("Download Data as CSV"):
         file_name="generated_data.csv",
         unsafe_allow_html=True,
     )
-    
+
 # App footer
 st.markdown("---")
 st.markdown("Created with :heart: by Sourajit Ghosh")
