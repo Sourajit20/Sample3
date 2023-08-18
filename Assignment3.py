@@ -13,10 +13,7 @@ st.set_page_config(
 
 # Sidebar styling
 st.sidebar.header("Parameters")
-st.sidebar.markdown(
-    "<h2 style='text-align:center; color:#EEA637;'>Parameter Settings</h2>",
-    unsafe_allow_html=True,
-)
+st.sidebar.markdown("## Parameter Settings")
 
 # Get user input
 mean = st.sidebar.number_input("Mean", value=0.0)
@@ -42,16 +39,16 @@ st.markdown(
 st.pyplot(fig)
 
 # Button styling
-if st.button("Download Data as CSV", key="download_button"):
+if st.button("Download Data as CSV"):
     df = pd.DataFrame(data, columns=["Value"])
     csv = df.to_csv(index=False)
     st.download_button(
-        "<span style='color:#fff;'>Download CSV</span>",
+        "Download CSV",
         data=csv,
         file_name="generated_data.csv",
-        unsafe_allow_html=True,
     )
 
 # App footer
 st.markdown("---")
 st.markdown("Created by Sourajit")
+
