@@ -20,8 +20,8 @@ st.sidebar.markdown(
 st.sidebar.markdown("Fine-tune the parameters to visualize the distribution:")
 
 # Get user input
-mean = st.sidebar.number_input("Mean", value=0.0, step=0.1)
-std_dev = st.sidebar.number_input("Standard Deviation", value=1.0, step=0.1)
+mean = st.sidebar.number_input("Mean", value=0.0)
+std_dev = st.sidebar.number_input("Standard Deviation", value=1.0)
 num_samples = st.sidebar.number_input("Number of Samples", value=1000)
 
 # Generate random data
