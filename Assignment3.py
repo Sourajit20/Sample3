@@ -13,7 +13,7 @@ st.set_page_config(
 
 # Sidebar styling
 st.sidebar.header("Parameters")
-st.sidebar.markdown("## Parameter Settings")
+st.sidebar.markdown("## <span style='color: #EEA637;'>Parameter Settings</span>", unsafe_allow_html=True)
 
 # Get user input
 mean = st.sidebar.number_input("Mean", value=0.0)
