@@ -50,5 +50,5 @@ if st.button("Download Data as CSV"):
 
 # App footer
 st.markdown("---")
-st.markdown("Created by Sourajit Ghosh")
+st.markdown("Created by Sourajit Ghosh :smile:")
 
