@@ -43,12 +43,16 @@ st.markdown(
 st.pyplot(fig)
 
 # Button styling
-if st.button("Download Data as CSV", key="download_button"):
+if st.button("Download Data as CSV"):
     df = pd.DataFrame(data, columns=["Value"])
     csv = df.to_csv(index=False)
-    download_link = f'<a href="data:file/csv;base64,{csv.encode().decode()}" download="generated_data.csv">Download CSV</a>'
-    st.markdown(download_link, unsafe_allow_html=True)
-
+    st.download_button(
+        "<span style='color:#fff; font-weight: bold;'>Download CSV</span>",
+        data=csv,
+        file_name="generated_data.csv",
+        unsafe_allow_html=True,
+    )
+    
 # App footer
 st.markdown("---")
 st.markdown("Created with :heart: by Sourajit Ghosh")
