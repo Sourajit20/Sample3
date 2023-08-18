@@ -13,7 +13,10 @@ st.set_page_config(
 
 # Sidebar styling
 st.sidebar.header("Parameters")
-st.sidebar.markdown("## <span style='color: #EEA637;'>Parameter Settings</span>", unsafe_allow_html=True)
+st.sidebar.markdown(
+    "<h2 style='color: #EEA637; font-weight: bold;'>Parameter Settings</h2>",
+    unsafe_allow_html=True,
+)
 st.sidebar.markdown("Adjust the parameters to see changes in the histogram:")
 
 # Get user input
@@ -28,13 +31,13 @@ data = np.random.normal(mean, std_dev, num_samples)
 # Plot styling
 fig, ax = plt.subplots(figsize=(8, 6))
 ax.hist(data, bins=30, edgecolor="k", color="#EEA637", alpha=0.7)
-ax.set_xlabel("Value", fontsize=14)
-ax.set_ylabel("Frequency", fontsize=14)
-ax.set_title("Histogram of Generated Normal Distribution", fontsize=18)
+ax.set_xlabel("Value", fontsize=14, fontweight="bold")
+ax.set_ylabel("Frequency", fontsize=14, fontweight="bold")
+ax.set_title("Histogram of Generated Normal Distribution", fontsize=18, fontweight="bold")
 
 # Display the plot using st.pyplot()
 st.markdown(
-    "<h1 style='text-align:center; color:#EEA637;'>Histogram of Generated Data</h1>",
+    "<h1 style='text-align:center; color:#EEA637; font-weight: bold;'>Histogram of Generated Data</h1>",
     unsafe_allow_html=True,
 )
 st.pyplot(fig)
@@ -44,9 +47,10 @@ if st.button("Download Data as CSV"):
     df = pd.DataFrame(data, columns=["Value"])
     csv = df.to_csv(index=False)
     st.download_button(
-        "Download CSV",
+        "<span style='color:#fff; font-weight: bold;'>Download CSV</span>",
         data=csv,
         file_name="generated_data.csv",
+        unsafe_allow_html=True,
     )
 
 # App footer
