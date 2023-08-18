@@ -17,8 +17,15 @@ def plot_histogram(samples):
   # This line has been removed since plotly.tools is no longer supported
   # st.plotly_chart(plt.gcf(), use_plotly_express=True)
 
-  # This line has been modified to use plotly.express instead of plotly_chart
-  st.plotly_express.bar(x=samples)
+  # This line has been removed since plotly.express.bar() uses plotly.tools
+  # st.plotly_express.bar(x=samples)
+
+  fig = plt.figure()
+  plt.hist(samples)
+  plt.xlabel("Value")
+  plt.ylabel("Number of samples")
+  plt.title("Histogram of normal distribution")
+  st.plotly_chart(fig)
 
 def download_data(samples):
   """Downloads the specified samples into a .csv file."""
@@ -36,10 +43,19 @@ number_of_samples = st.slider("Number of samples", 10, 1000, 100)
 
 samples = generate_normal_distribution(mean, standard_deviation, number_of_samples)
 
-# This line has been modified to use plotly.express instead of plotly_chart
-st.plotly_express.bar(x=samples)
+# This line has been removed since plotly.express.bar() uses plotly.tools
+# st.plotly_express.bar(x=samples)
+
+# This line has been modified to use plotly.figure()
+fig = plt.figure()
+plt.hist(samples)
+plt.xlabel("Value")
+plt.ylabel("Number of samples")
+plt.title("Histogram of normal distribution")
+st.plotly_chart(fig)
 
 download_button = st.button("Download data")
 
 if download_button:
   download_data(samples)
+
