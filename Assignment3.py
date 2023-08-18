@@ -1,76 +1,38 @@
 import streamlit as st
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
-import csv
 
-def generate_normal_distribution(mean, standard_deviation, number_of_samples):
-  """Generates a normal distribution with the specified mean, standard deviation, and number of samples."""
-  samples = np.random.normal(mean, standard_deviation, number_of_samples)
-  return samples
+# Page layout
+st.set_page_config(page_title="Normal Distribution App", layout="wide")
 
-def plot_histogram(samples):
-  """Plots the histogram of the specified samples."""
-  plt.hist(samples)
-  plt.xlabel("Value")
-  plt.ylabel("Number of samples")
-  plt.title("Histogram of normal distribution")
-  # This line has been removed since plotly.tools is no longer supported
-  # st.plotly_chart(plt.gcf(), use_plotly_express=True)
+# Sidebar
+st.sidebar.header("Parameters")
+mean = st.sidebar.number_input("Mean", value=0.0)
+std_dev = st.sidebar.number_input("Standard Deviation", value=1.0)
+num_samples = st.sidebar.number_input("Number of Samples", value=1000)
 
-  # This line has been removed since plotly.express.bar() uses plotly.tools
-  # st.plotly_express.bar(x=samples)
+# Generate random data
+np.random.seed(0)  # For reproducibility
+data = np.random.normal(mean, std_dev, num_samples)
 
-  # This line has been removed since plotly.figure() uses plotly.tools
-  # fig = plt.figure()
-  # plt.hist(samples)
-  # plt.xlabel("Value")
-  # plt.ylabel("Number of samples")
-  # plt.title("Histogram of normal distribution")
-  # st.plotly_chart(fig)
+# Create a figure and axis for the histogram
+fig, ax = plt.subplots()
+ax.hist(data, bins=30, edgecolor="k")
+ax.set_xlabel("Value")
+ax.set_ylabel("Frequency")
+ax.set_title("Histogram of Generated Data")
 
-  fig = go.Figure()
-  fig.hist(samples)
-  fig.xlabel("Value")
-  fig.ylabel("Number of samples")
-  fig.title("Histogram of normal distribution")
-  st.plotly_chart(fig)
+# Display the plot using st.pyplot()
+st.header("Histogram of Generated Data")
+st.pyplot(fig)
 
-def download_data(samples):
-  """Downloads the specified samples into a .csv file."""
-  with open("data.csv", "w") as f:
-    writer = csv.writer(f)
-    writer.writerow(["Value"])
-    for sample in samples:
-      writer.writerow([sample])
+# Download as CSV
+if st.button("Download Data as CSV"):
+    df = pd.DataFrame(data, columns=["Value"])
+    csv = df.to_csv(index=False)
+    st.download_button("Download CSV", data=csv, file_name="generated_data.csv")
 
-st.title("Normal distribution generator")
-
-mean = st.slider("Mean", 0, 10, 5)
-standard_deviation = st.slider("Standard deviation", 0, 5, 1)
-number_of_samples = st.slider("Number of samples", 10, 1000, 100)
-
-samples = generate_normal_distribution(mean, standard_deviation, number_of_samples)
-
-# This line has been removed since plotly.express.bar() uses plotly.tools
-# st.plotly_express.bar(x=samples)
-
-# This line has been removed since plotly.figure() uses plotly.tools
-# fig = plt.figure()
-# plt.hist(samples)
-# plt.xlabel("Value")
-# plt.ylabel("Number of samples")
-# plt.title("Histogram of normal distribution")
-# st.plotly_chart(fig)
-
-fig = go.Figure()
-fig.hist(samples)
-fig.xlabel("Value")
-fig.ylabel("Number of samples")
-fig.title("Histogram of normal distribution")
-st.plotly_chart(fig)
-
-download_button = st.button("Download data")
-
-if download_button:
-  download_data(samples)
-
+# App footer
+st.markdown("---")
+st.markdown("Created by Your Name")
