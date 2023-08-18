@@ -11,9 +11,9 @@ st.set_page_config(
     page_icon=":chart_with_upwards_trend:",
 )
 
-# Sidebar styling with colors
+# Sidebar styling
 st.sidebar.header("Parameters")
-st.sidebar.markdown("<h3 style='color: #EEA637;'>Parameter Settings</h3>", unsafe_allow_html=True)
+st.sidebar.markdown("## <span style='color: #EEA637;'>Parameter Settings</span>", unsafe_allow_html=True)
 st.sidebar.markdown("Adjust the parameters to see changes in the histogram:")
 
 # Get user input
@@ -33,7 +33,10 @@ ax.set_ylabel("Frequency", fontsize=14)
 ax.set_title("Histogram of Generated Normal Distribution", fontsize=18)
 
 # Display the plot using st.pyplot()
-st.subheader("Histogram of Generated Data")
+st.markdown(
+    "<h1 style='text-align:center; color:#EEA637;'>Histogram of Generated Data</h1>",
+    unsafe_allow_html=True,
+)
 st.pyplot(fig)
 
 # Button styling
