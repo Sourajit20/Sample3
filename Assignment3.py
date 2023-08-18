@@ -16,12 +16,16 @@ num_samples = st.sidebar.number_input("Number of Samples", value=1000)
 np.random.seed(0)  # For reproducibility
 data = np.random.normal(mean, std_dev, num_samples)
 
-# Histogram
+# Create a figure and axis for the histogram
+fig, ax = plt.subplots()
+ax.hist(data, bins=30, edgecolor="k")
+ax.set_xlabel("Value")
+ax.set_ylabel("Frequency")
+ax.set_title("Histogram of Generated Data")
+
+# Display the plot using st.pyplot()
 st.header("Histogram of Generated Data")
-plt.hist(data, bins=30, edgecolor="k")
-plt.xlabel("Value")
-plt.ylabel("Frequency")
-st.pyplot()
+st.pyplot(fig)
 
 # Download as CSV
 if st.button("Download Data as CSV"):
@@ -31,4 +35,4 @@ if st.button("Download Data as CSV"):
 
 # App footer
 st.markdown("---")
-st.markdown("Created by Your Name")
+st.markdown("Created by Sourajit")
