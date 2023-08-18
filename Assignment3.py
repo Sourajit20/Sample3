@@ -13,7 +13,8 @@ st.set_page_config(
 
 # Sidebar styling
 st.sidebar.header("Parameters")
-st.sidebar.markdown("## <span style='color: #EEA637;'>Parameter Settings</span>", unsafe_allow_html=True)
+st.sidebar.markdown("### Parameter Settings")
+st.sidebar.markdown("Adjust the parameters to see changes in the histogram:")
 
 # Get user input
 mean = st.sidebar.number_input("Mean", value=0.0)
@@ -26,16 +27,13 @@ data = np.random.normal(mean, std_dev, num_samples)
 
 # Plot styling
 fig, ax = plt.subplots(figsize=(8, 6))
-ax.hist(data, bins=30, edgecolor="k", color="#EEA637")
+ax.hist(data, bins=30, edgecolor="k", color="#EEA637", alpha=0.7)
 ax.set_xlabel("Value", fontsize=14)
 ax.set_ylabel("Frequency", fontsize=14)
-ax.set_title("Histogram of Generated Normal Distribution", fontsize=16)
+ax.set_title("Histogram of Generated Normal Distribution", fontsize=18)
 
 # Display the plot using st.pyplot()
-st.markdown(
-    "<h1 style='text-align:center; color:#EEA637;'>Histogram of Generated Data</h1>",
-    unsafe_allow_html=True,
-)
+st.subheader("Histogram of Generated Data")
 st.pyplot(fig)
 
 # Button styling
@@ -50,4 +48,4 @@ if st.button("Download Data as CSV"):
 
 # App footer
 st.markdown("---")
-st.markdown("Created by Sourajit Ghosh :smile:")
+st.markdown("Created with :heart: by Sourajit Ghosh")
