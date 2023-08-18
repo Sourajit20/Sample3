@@ -33,7 +33,7 @@ ax.set_title("Histogram of Generated Normal Distribution", fontsize=16)
 
 # Display the plot using st.pyplot()
 st.markdown(
-    "<h1 style='text-align:center; color:#333;'>Histogram of Generated Data</h1>",
+    "<h1 style='text-align:center; color:#EEA637;'>Histogram of Generated Data</h1>",
     unsafe_allow_html=True,
 )
 st.pyplot(fig)
