@@ -21,7 +21,7 @@ fig, ax = plt.subplots()
 ax.hist(data, bins=30, edgecolor="k")
 ax.set_xlabel("Value")
 ax.set_ylabel("Frequency")
-ax.set_title("Histogram of Generated Data")
+ax.set_title("Histogram of the Generated Normal Distribution")
 
 # Display the plot using st.pyplot()
 st.header("Histogram of Generated Data")
