@@ -47,7 +47,7 @@ st.pyplot(fig)
 if st.button("Download Data as CSV"):
     df = pd.DataFrame(data, columns=["Value"])
     csv = df.to_csv(index=False)
-    st.download_button("Download CSV", data=csv, file_name="generated_data.csv")
+    st.download_button("Download CSV", data=csv, file_name="generated_data_Sourajit_Ghosh.csv")
 
 # App footer
 st.markdown("---")
